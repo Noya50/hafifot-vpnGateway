@@ -17,7 +17,7 @@ resource "azurerm_public_ip" "pips" {
 
 module "pips_diagnostic_setting" {
   for_each = var.vpnGateway_active_active == true ? tomap({ 0 = true, 1 = true, 2 = true }) : tomap({ 0 = true, 1 = true })
-  source = "../diagnosticSetting"
+  source = "git::https://github.com/Noya50/hafifot-diagnosticSetting.git"
 
   name                       = "${azurerm_public_ip.pips[each.key].name}-diagnostic-setting"
   target_resource_id         = azurerm_public_ip.pips[each.key].id
@@ -70,7 +70,7 @@ resource "azurerm_virtual_network_gateway" "this" {
 }
 
 module "diagnostic_setting" {
-  source = "../diagnosticSetting"
+  source = "git::https://github.com/Noya50/hafifot-diagnosticSetting.git"
 
   name                          = "${azurerm_virtual_network_gateway.this.name}-diagnostic-setting-tf"
   target_resource_id            = azurerm_virtual_network_gateway.this.id
