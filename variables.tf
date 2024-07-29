@@ -177,20 +177,8 @@ variable "virtual_wan_traffic_enabled" {
   default     = false
 }
 
-variable "diagnostic_setting_categories" {
-  description = "value"
-  type = list(string)
-  default = [ "GatewayDiagnosticLog", "TunnelDiagnosticLog", "RouteDiagnosticLog", "IKEDiagnosticLog", "P2SDiagnosticLog" ]
-}
-
 variable "pips_log_analytics_workspace_id" {
   description = "(Optional) Log analytics workspace for the diagnostic setting of the gateway's pips. If this value is not specified, the log_analytics_workspace_id of the gateway will be used."
   type = string
   default = null
-}
-
-variable "pips_diagnostic_setting_categories" {
-  description = "(Optional) Categories for the diagnostic setting of the pips."
-  type = list(string)
-  default = [ "DDoSProtectionNotifications", "DDoSMitigationFlowLogs", "DDoSMitigationReports" ]
 }
