@@ -22,8 +22,6 @@ module "pips_diagnostic_setting" {
   name                       = "${azurerm_public_ip.pips[each.key].name}-diagnostic-setting"
   target_resource_id         = azurerm_public_ip.pips[each.key].id
   log_analytics_workspace_id = var.pips_log_analytics_workspace_id != null ? var.pips_log_analytics_workspace_id : var.log_analytics_workspace_id
-  diagnostic_setting_categories = var.pips_diagnostic_setting_categories
-
 }
 
 resource "azurerm_virtual_network_gateway" "this" {
@@ -75,5 +73,4 @@ module "diagnostic_setting" {
   name                          = "${azurerm_virtual_network_gateway.this.name}-diagnostic-setting-tf"
   target_resource_id            = azurerm_virtual_network_gateway.this.id
   log_analytics_workspace_id    = var.log_analytics_workspace_id
-  diagnostic_setting_categories = var.diagnostic_setting_categories
 }
